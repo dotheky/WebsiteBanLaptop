@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+<div style="margin-bottom:50px;text-align:center">
+    <a href="Index" style="font-size: 35px;text-align:center; font-weight: bolder">Tin tức: </a>
+    @foreach (var item in Model)
+    {
+        <r style="font-size: 30px;text-align:center; font-weight: bolder; color: black">@item.Title!</r>
+    }
+</div>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="row" style="text-align:center">
+            <a style="margin-left:14%;margin-bottom:30px;margin-top:30px"><img src="@item.Image" width="800" height="500"/></a>
+        </div>
+        <div class="row">
+            @{ 
+                string myEncodedString = HttpUtility.HtmlEncode(@item.Content);
+            }
+            <a style="font-size: 20px; color:black">@Html.Raw(HttpUtility.HtmlDecode(@item.Content))</a>
+        </div>
+    </div>
+    <hr />
+}
+

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Bill_cus";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<div class="container">
+    @if (Session["user"] == null)
+    {
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center"><b style="font-size:35px;color:red">Bạn cần đăng nhập!</b></div><br /><br />
+        </div>
+    }
+    else
+    {
+        <div class="card-header" style="margin-bottom:40px">
+            <h3 class="card-title" style="text-align:center;font-size:35px;color:red; width:100%">Sản phẩm đã mua</h3>
+        </div>
+        <table id="example2" class="table table-borderless table-hover" style="font-size:18px">
+            <thead>
+                <tr align="center">
+                    <th>ID</th>
+                    <th>Tên khách hàng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Địa chỉ nhận hàng</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="odd gradeX" align="center">
+                        <td>@item.ID</td>
+                        <td>
+                            @foreach (var i in ViewBag.name)
+                            {
+                                @i.Cus_Name
+                            }
+                            </td>
+                        <td>@item.Date_order</td>
+                        <td>@item.Address</td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "Bill_Detail", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr align="center">
+                    <th>ID</th>
+                    <th>ID khách hàng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Địa chỉ nhận hàng</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>
